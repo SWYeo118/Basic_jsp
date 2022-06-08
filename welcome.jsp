@@ -31,6 +31,7 @@
     <div class="container">
         <div class="text-center">
           <h3>Welcome to Web Market!</h3>
+          <!-- ctrl shift m 하면 import 가능 -->
           <%
           Date now = new Date();
           SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss a");
