@@ -14,3 +14,6 @@ bootstrap이란 웹사이트를 쉽게 만들 수 있도록 하는 HTML, CSS, JS
   rounded : 테두리 둥글게
 
   3. Eclipse에서 ctrl + shift + m 하면 자동 import 가능
+
+<JSP>
+  4. jsp 파일을 끌고오고 싶으면 include 태그를 사용해야 한다. jsp는 iframe으로 안됌
