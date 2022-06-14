@@ -1,123 +1,66 @@
-package com.jsp.domain.model;
+<%@page import="com.jsp.data.ProductRepository"%>
+<%@page import="com.jsp.domain.model.Product"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 
-import java.util.Objects;
+<head>
+<meta charset="UTF-8">
+<title>상품 정보</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-// 1. 무지성 private 멤버 변수
-// 2. 필요하면 생성자 추가
-// 3. 무지성 getter / setter 읽기 전용, 쓰기 전용
-// 4. 무지성 toString()
-// 5. 필요하면 equals / hashCode 재정의 (오버라이드)
-public class Product {
-    public static void main(String[] args) {
-        Product product = new Product("33", "33", 11);
-        System.out.println(product.hashCode());
+<body>
+	<jsp:include page="menu.jsp"></jsp:include>
 
-        Product product2 = new Product("33", "33", 11);
-        System.out.println(product2.hashCode());
+	<div class="p-5 bg-primary text-white">
+		<div class="container">
+			<h1 class="display-3">상품 정보</h1>
+		</div>
+	</div>
 
-        Object object = new Product("33", "33", 11);
+	<%
+	ProductRepository repository = ProductRepository.getInstance();
+	
+	String id = request.getParameter("id");
+	Product product = repository.getProductById(id);
+	%>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>
+					<%=product.getName()%>
+				</h3>
+				<p>
+					<%=product.getDescription()%>
+				</p>
+				<p>
+					<b>상품 코드 : </b><span class="badge bg-danger"> <%=product.getId()%>
+					</span>
+				</p>
+				<p>
+					<b>제조사 : </b><%=product.getManufacturer()%></p>
+				<p>
+					<b>분류 : </b><%=product.getCategory()%></p>
+				<p>
+					<b>재고 수 : </b><%=product.getUnitsInStock()%></p>
+				<p>
+					<%=product.getUnitPrice()%>원
+				</p>
+				<p>
+					<a href="" class="btn btn-info">상품 주문 &raquo;</a>
+				</p>
+				<a href="products.jsp" class="btn btn-secondary">상품 목록 &raquo;</a>
+			</div>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+</body>
 
-        System.out.println(product.equals(product2)); // true
-        System.out.println(product.hashCode() == product2.hashCode()); // true
-        System.out.println(product == product2); // false
-    }
-
-    private String id;
-    private String name;
-    private int unitPrice;
-    private String description;
-    private String manufacturer;
-    private String category;
-    private long unitsInStock;
-    private String condition;
-
-    public Product(String id, String name, int unitPrice) {
-        this.id = id;
-        this.name = name;
-        this.unitPrice = unitPrice;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(int unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public long getUnitsInStock() {
-        return unitsInStock;
-    }
-
-    public void setUnitsInStock(long unitsInStock) {
-        this.unitsInStock = unitsInStock;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Product other = (Product) obj;
-        return Objects.equals(id, other.id);
-    }
-
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", unitPrice=" + unitPrice
-                + ", description=" + description + ", manufacturer=" + manufacturer + ", category="
-                + category + ", unitsInStock=" + unitsInStock + ", condition=" + condition + "]";
-    }
-}
+</html>
