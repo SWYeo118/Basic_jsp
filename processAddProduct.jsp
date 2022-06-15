@@ -1,7 +1,7 @@
+<%@page import="com.jsp.domain.repository.ProductRepository"%>
 <%@page import="com.jsp.domain.model.Product"%>
-<%@page import="com.jsp.data.ProductRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 // 한글 처리
 request.setCharacterEncoding("UTF-8");
@@ -28,18 +28,3 @@ repository.addProduct(product);
 
 response.sendRedirect("products.jsp");
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
