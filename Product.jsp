@@ -26,8 +26,6 @@
 	</div>
 
 	<%
-	p
-
 	ProductRepository repository = ProductRepository.getInstance();
 	String id = request.getParameter("id");
 	Product product = repository.getProductById(id);
