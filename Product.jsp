@@ -1,4 +1,4 @@
-<%@page import="com.jsp.data.ProductRepository"%>
+<%@page import="com.jsp.domain.repository.ProductRepository"%>
 <%@page import="com.jsp.domain.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -26,8 +26,9 @@
 	</div>
 
 	<%
+	p
+
 	ProductRepository repository = ProductRepository.getInstance();
-	
 	String id = request.getParameter("id");
 	Product product = repository.getProductById(id);
 	%>
