@@ -1,4 +1,4 @@
-<%@page import="com.jsp.data.ProductRepository"%>
+<%@page import="com.jsp.domain.repository.ProductRepository"%>
 <%@page import="com.jsp.domain.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -27,26 +27,28 @@
 
 	<div class="container">
 		<div class="row" align="center">
-            <%
-            //String name = (String) session.getAttribute("name");
-            //int age = (int) session.getAttribute("age");
-            
-            out.print(session.getAttribute("foods"));
-            
-            // 싱글턴 패턴
-            ProductRepository repository = ProductRepository.getInstance();
-            List<Product> products = repository.getAllProducts();
-            for (int i = 0; i < products.size(); i++) {
-                Product product = products.get(i);
-            %>
-				<div class="col-md-4">
-					<h3><%= product.getName() %></h3>
-					<p><%= product.getDescription() %></p>
-					<p><%= product.getUnitPrice() %>원</p>
-					<p><a href="product.jsp?id=<%= product.getId() %>" class="btn btn-secondary">상세 정보 &raquo;</a></p>
-				</div>
 			<%
-            }
+			//String name = (String) session.getAttribute("name");
+			//int age = (int) session.getAttribute("age");
+
+			// 싱글턴 패턴
+			ProductRepository repository = ProductRepository.getInstance();
+			List<Product> products = repository.getAllProducts();
+			for (int i = 0; i < products.size(); i++) {
+				Product product = products.get(i);
+			%>
+			<div class="col-md-4">
+				<h3><%=product.getName()%></h3>
+				<p><%=product.getDescription()%></p>
+				<p><%=product.getUnitPrice()%>원
+				</p>
+				<p>
+					<a href="product.jsp?id=<%=product.getId()%>"
+						class="btn btn-secondary">상세 정보 &raquo;</a>
+				</p>
+			</div>
+			<%
+			}
 			%>
 		</div>
 	</div>
